@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Centered with Buttons</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff; /* White background */
+            font-family: Arial, sans-serif;
+            color: #333; /* Dark text color for readability */
+        }
+        .container {
+            text-align: center;
+            margin-bottom: 50px; /* Space for the footer */
+        }
+        video {
+            width: 600px;
+            max-width: 100%;
+            border: 2px solid #333;
+            border-radius: 8px;
+        }
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .buttons button {
+            width: 200px;  /* Fixed width */
+            height: 50px;  /* Fixed height */
+            margin: 10px 0;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Video Center</h1> <!-- Title -->
+        <video id="video" src="myVideo.mp4" controls></video>
+        <div class="buttons">
+            <button class="one-btn" >button one</button>
+            <button class="two-btn" >button two</button>
+            <button class="three-btn" >button three</button>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 Video Center. All Rights Reserved.
+    </footer>
+
+    <script>
+        
+
+
+    </script>
+</body>
+</html>
