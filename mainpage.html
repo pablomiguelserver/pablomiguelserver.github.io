@@ -43,7 +43,6 @@
             border-radius: 5px;
         }
 
-
         footer {
             position: fixed;
             bottom: 0;
@@ -58,12 +57,12 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to the Video Center</h1> <!-- Title -->
+        <h1>merge conflict resolved</h1> <!-- Title -->
         <video id="video" src="myVideo.mp4" controls></video>
         <div class="buttons">
-            <button class="one-btn" >button one</button>
-            <button class="two-btn" >button two</button>
-            <button class="three-btn" >button three</button>
+            <button class="one-btn" id="guitarBtn">Guitar</button>
+            <button class="two-btn" id="pianoBtn">Piano</button>
+            <button class="three-btn" id="bassBtn">Bass</button>
         </div>
     </div>
 
@@ -72,9 +71,18 @@
     </footer>
 
     <script>
-        
+        // Add event listeners to each button to navigate to specific endpoints
+        document.getElementById('guitarBtn').addEventListener('click', function() {
+            window.location.href = './guitar/guitar.html';  // Redirect to guitar page
+        });
 
+        document.getElementById('pianoBtn').addEventListener('click', function() {
+            window.location.href = './piano/piano.html';  // Redirect to piano page
+        });
 
+        document.getElementById('bassBtn').addEventListener('click', function() {
+            window.location.href = './bass/bass.html';  // Redirect to bass page
+        });
     </script>
 </body>
 </html>
