@@ -101,7 +101,19 @@ img {
   height: auto;
 }
 
-
+        #containert {
+            display: flex;
+            width: 100%;
+        }
+        #terminal {
+            width: 70%;
+            height: 100vh;
+        }
+        #info {
+            width: 30%;
+            padding: 30px;
+            background-color: #f4f4f4;
+        }
     </style>
 </head>
 <body>
@@ -152,7 +164,11 @@ music theory at all, all you need to know is the concept of an interval in music
         </p>
 
 
-
+<div id="containert">
+    <!-- Terminal Container -->
+    <div id="terminal"></div>
+    </div>
+</div>
 
 	<h2>Recognizing both interval sound and position (1 year)</h2>
         <p>
@@ -162,5 +178,19 @@ music theory at all, all you need to know is the concept of an interval in music
     </div>
 </body>
 
+<!-- Xterm.js Script -->
+<script src="https://cdn.jsdelivr.net/npm/xterm/lib/xterm.js"></script>
+<script>
+    // Initialize Xterm
+    const term = new Terminal();
+    term.open(document.getElementById('terminal'));
 
+    // Terminal Appearance Settings (Updated)
+    term.options.fontSize = 14;
+    term.options.theme = {
+        background: '#000000',
+        foreground: '#ffffff'
+    };
+    term.writeln('hello world');
+</script>
 </html>

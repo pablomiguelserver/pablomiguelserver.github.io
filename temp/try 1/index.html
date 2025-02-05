@@ -17,7 +17,7 @@
             display: flex;
             height: 100vh;
         }
-        #container {
+        #containert {
             display: flex;
             width: 100%;
         }
@@ -34,19 +34,9 @@
 </head>
 <body>
 
-<div id="container">
+<div id="containert">
     <!-- Terminal Container -->
     <div id="terminal"></div>
-    
-    <!-- Text Section -->
-    <div id="info">
-        <h2>Fibonacci Calculator</h2>
-        <p>This console displays the first 10 numbers of the Fibonacci sequence, calculated in real-time. Xterm.js is used to emulate a terminal in the browser.</p>
-        <p><strong>Technologies used:</strong></p>
-        <ul>
-            <li>Xterm.js</li>
-            <li>HTML, CSS, JavaScript</li>
-        </ul>
     </div>
 </div>
 
@@ -65,16 +55,7 @@
         foreground: '#ffffff'
     };
 
-    // Simulated Program (Fibonacci Calculation)
-    term.writeln('Running Fibonacci Calculator...\r\n');
-
-    let a = 0, b = 1;
-    for (let i = 0; i < 10; i++) {
-        term.writeln(`Fib(${i}): ${a}`);
-        [a, b] = [b, a + b];
-    }
-
-    term.writeln('\r\nProgram Completed.');
+    term.writeln('hello world');
 </script>
 
 </body>
