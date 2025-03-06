@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci Terminal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .terminal {
+            width: 80%;
+            max-width: 600px;
+            height: 300px;
+            background: black;
+            color: lime;
+            padding: 10px;
+            overflow-y: auto;
+            font-family: monospace;
+        }
+        input {
+            width: 100%;
+            border: none;
+            background: black;
+            color: lime;
+            font-family: monospace;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <p>Enter a number in the terminal below to generate the Fibonacci sequence up to that number.</p>
+    
+    <div class="terminal" id="terminal">
+        <div id="output"></div>
+        <input type="text" id="input" autofocus>
+    </div>
+    
+    <p>Fibonacci numbers are widely used in mathematics and computer science.</p>
+
+    <script>
+        function fibonacci(n) {
+            let seq = [0, 1];
+            for (let i = 2; i < n; i++) {
+                seq.push(seq[i - 1] + seq[i - 2]);
+            }
+            return seq.slice(0, n);
+        }
+
+        document.getElementById("input").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                let value = parseInt(this.value);
+                if (!isNaN(value) && value > 0) {
+                    let result = fibonacci(value).join(", ");
+                    document.getElementById("output").innerHTML += "<br>> " + value + "<br>" + result + "<br>";
+                } else {
+                    document.getElementById("output").innerHTML += "<br>> Invalid input. Enter a positive number.<br>";
+                }
+                this.value = "";
+            }
+        });
+    </script>
+</body>
+</html>
