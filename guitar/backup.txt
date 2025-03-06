@@ -171,16 +171,21 @@ music theory at all, all you need to know is the concept of an interval in music
             to practice this 5 min a day you may use this app 
         </p>
 
+
     <div class="terminal" id="terminal">
         <div id="output">Welcome to the Hello World Terminal!<br></div>
         <input type="text" id="input" autofocus>
     </div>
 
 
+
+
+
 	<h2>Recognizing interval sound and position (1 year)</h2>
         <p>
             Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra.
         <p>
+
 
 
 intervals progress1: 
@@ -193,6 +198,12 @@ sing 3 notes in a row [V] <br>
 more than 4 notes in a row [need practice] <br>
 
  
+=======
+            Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra.
+Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra.
+Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra.
+Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra.
+>>>>>>> 7a514184b8b4148bfa5cf14e91d816105e4a24a7
         </p>
         </p>
         <a href='../mainpage.html'>Back to Home</a>
