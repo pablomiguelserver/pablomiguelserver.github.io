@@ -4,91 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Embedded Terminal Example</title>
-
-    <!-- Xterm.js Styles -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm/css/xterm.css" />
     
-    <!-- Page Styling -->
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            display: flex;
-            height: 100vh;
-        }
-        #container {
-            display: flex;
-            width: 100%;
-        }
-        #terminal {
-            width: 70%;
-            height: 100vh;
-        }
-        #info {
-            width: 30%;
-            padding: 30px;
-            background-color: #f4f4f4;
-        }
-    </style>
 </head>
 <body>
 
-<div id="container">
-    <!-- Terminal Container -->
-    <div id="terminal"></div>
-    
-    <!-- Text Section -->
-    <div id="info">
-        <h2>Simple Input Program</h2>
-        <p>This terminal will ask for your name and greet you. Xterm.js is used to emulate a terminal in the browser.</p>
-        <p><strong>Technologies used:</strong></p>
-        <ul>
-            <li>Xterm.js</li>
-            <li>HTML, CSS, JavaScript</li>
-        </ul>
-    </div>
+<div class="p-6 bg-background rounded-lg shadow-md">
+  <h2 class="text-xl font-semibold mb-4">Button</h2>
+  <p class="text-muted-foreground mb-4">Displays a button or components that looks like a button</p>
+  <div class="flex justify-center items-center h-32 border border-muted rounded-lg">
+    <button class="bg-primary text-primary-foreground px-4 py-2 rounded-lg shadow hover:bg-primary/80">Button</button>
+  </div>
+  <h3 class="text-lg font-medium mt-6">Installation</h3>
+  <p class="text-muted-foreground">You can use the buttonVariants helper to create a link that looks like a button.</p>
+  <code class="bg-muted text-muted-foreground p-2 rounded-md mt-2 block"> npx shadcn-ui@latest add button </code>
 </div>
-
-<!-- Xterm.js Script -->
-<script src="https://cdn.jsdelivr.net/npm/xterm/lib/xterm.js"></script>
-
-<script>
-    // Initialize Xterm
-    const term = new Terminal();
-    term.open(document.getElementById('terminal'));
-
-    // Terminal Appearance Settings
-    term.options.fontSize = 14;
-    term.options.theme = {
-        background: '#000000',
-        foreground: '#ffffff'
-    };
-
-    // Simulated Program (Name Input)
-    term.writeln('Welcome to the terminal!');
-    term.write('What is your name? ');
-
-    let userInput = '';
-
-    // Listen for key events
-    term.onKey(e => {
-        const char = e.key;
-        if (e.domEvent.keyCode === 13) {  // Enter key
-            term.writeln('\r\nHello, ' + userInput + '! Nice to meet you.');
-            userInput = '';
-            term.write('What is your name? ');
-        } else if (e.domEvent.keyCode === 8) {  // Backspace key
-            if (userInput.length > 0) {
-                userInput = userInput.slice(0, -1);
-                term.write('\b \b');
-            }
-        } else {
-            userInput += char;
-            term.write(char);
-        }
-    });
-</script>
 
 </body>
 </html>

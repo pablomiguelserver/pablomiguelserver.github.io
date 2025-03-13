@@ -134,10 +134,13 @@ music theory at all, all you need to know is the concept of an interval in music
         <h1>Guitar</h1>
 
 	<h2>Recognize sound of interval (6 months)</h2>
-        <p>
-		first you have to use nemotecnia to memorize the intervals sounds. 
-                you can make a chart with your own songs, these are mine.  
-        </p>
+        
+        <p> this is how an interval sound  [add interval sound] </p>
+        <p>you have to use nemotecnia to memorize the intervals.In this case we have a chart with songs that use the intervals.for example in the song happy birthday the interval of major second is present at the part where the lyrics say '...ppy birth...' . always pay attention to the lyrics. <p>
+        <p>This is how I memorize them: I only listened to the song fragment containg the interval. thanks to this app. [app here]. It took me 2 weeks to memorize an interval, listening to the music fragment 5 minutes a day. for example for major 2nd ascending it took me 2 weeks and for major 2nd descending took me another 2 weeks, and with 3rds, 4ths and so on.   <p>
+	<p>while you are learning the intervals you should use "toned ear" webpage and test yourself with the intervals that you know so far.once you are at a consistent 90 percent accuracy with all intervals you are good to go to "Recognize interval on fretboard" section.   </p>
+
+	</p>
         <table>
             <tr>
                 <th></th>
@@ -154,23 +157,81 @@ music theory at all, all you need to know is the concept of an interval in music
                 <td>something</td>
                 <td>summer time</td>
             </tr>
+            <tr>
+                <td>perfect 4th</td>
+                <td>oh christmas tree</td>
+                <td>I've Been Working on the Railroad</td>
+            </tr>
+            <tr>
+                <td>perfect 5th</td>
+                <td>twinkle twinkle little star</td>
+                <td>flinstones openning</td>
+            </tr>
+            <tr>
+                <td>major 6th</td>
+                <td>frank sinatra - my way</td>
+                <td>Barrett Sisters - Nobody Knows The Trouble</td>
+            </tr>
+            <tr>
+                <td>major 7th</td>
+                <td>aha - take on me</td>
+                <td>Jo Stafford - I Love You</td>
+            </tr>
+            <tr>
+                <td>perfect 8th</td>
+                <td>somewhere over the raimbow</td>
+                <td>there is no bussiness like show businnes</td>
+            </tr>
         </table>
-        <p>
-		now you need to practice 5 minutes each day you can do it using the page called "tonedear"  
-        </p>
+
+ 	<br>
+ 	<br>
+
+        <table>
+            <tr>
+                <th></th>
+                <th>Ascending</th>
+                <th>Descending</th>
+            </tr>
+            <tr>
+                <td>minor 2nd</td>
+                <td>jaws</td>
+                <td>Joy To The World</td>
+            </tr>
+            <tr>
+                <td>minor 3rd</td>
+                <td>Johannes Brahms - Lullaby </td>
+                <td>Barney's oppening</td>
+            </tr>
+            <tr>
+                <td>major 6th</td>
+                <td>love story</td>
+                <td>love story</td>
+            </tr>
+            <tr>
+                <td>major 7th</td>
+                <td>celine dion - somewhere</td>
+                <td>lady jane - rolling stones</td>
+            </tr>
+            <tr>
+                <td>tritone</td>
+                <td>The Beatles - And I Love Her</td>
+                <td>yyz - rush</td>
+            </tr>
+        </table>
+
 
 	<h2>Recognize interval on fretboard (2 weeks)</h2>
         <p>
-            Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. 
-            Fusce nec tellus sed augue semper porta. Mauris massa.Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. 
-            Fusce nec tellus sed augue semper porta. Mauris massa.Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. 
+now that you can identify the intervals with your ear, we now have to know their position on the guitar fretboard. Is important to know that you will first learn the last 4 strings in the guitar (G, D, A, E) and later on we will learn the rest. these are the most common shapes used in the fretboard.  
         </p>
 
         <img src="../media/major_and_perfect.PNG" alt="Description of image">
+
+	<img src="../media/minor_intervals.png" alt="Description of image">
         <p>
             to practice this 5 min a day you may use this app 
         </p>
-
 
     <div class="terminal" id="terminal">
         <div id="output">Welcome to the Hello World Terminal!<br></div>
@@ -178,34 +239,42 @@ music theory at all, all you need to know is the concept of an interval in music
     </div>
 
 
-
-
-
 	<h2>Recognizing interval sound and position (1 year)</h2>
         <p>
             Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra.
-        <p>
+        </p>
 
 
-
+<p>
 intervals progress1: 
-
-sing and play , simultaneously<br><br>
+<br>
+sing and play , simultaneously<br>
 
 sing one note [V] <br>
 sing 2 notes in a row [V] <br>
 sing 3 notes in a row [V] <br>
-more than 4 notes in a row [need practice] <br>
+more than 3 notes in a row [V] <br>
 
- 
-=======
-            Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra.
-Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra.
-Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra.
-Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra.
->>>>>>> 7a514184b8b4148bfa5cf14e91d816105e4a24a7
-        </p>
-        </p>
+<br> 
+can hear and play (need to warm up) <br>
+
+2 notes [V]<br>
+3 notes [V]<br>
+more than 3 notes in a row [V] <br>
+
+<br>
+can sing over chord progression <br>
+
+1 note in a row[V]<br>
+2 notes in a row [V]<br>
+3 notes in a row [V]<br>
+more than 3 notes in a row [V]<br>
+<br>
+note: practice at 70 bpm, it might not feel like it but faster bpm is harder actually <br>
+
+
+</p>
+        
         <a href='../mainpage.html'>Back to Home</a>
     </div>
 </body>

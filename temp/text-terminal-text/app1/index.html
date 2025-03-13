@@ -1,3 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triplets Terminal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .terminal {
+            width: 80%;
+            max-width: 600px;
+            height: 300px;
+            background: black;
+            color: white;
+            padding: 10px;
+            overflow-y: auto;
+            font-family: monospace;
+        }
+        input {
+            width: 100%;
+            border: none;
+            background: black;
+            color: white;
+            font-family: monospace;
+            outline: none;
+        }
+
+
+    </style>
+</head>
+<body>
+    <p>Enter forbidden pairs (e.g., "1 2, 3 4") and press Enter to generate valid triplets.</p>
+    
+    <div class="terminal" id="terminal">
+        <div id="output">Enter forbidden pairs and press Enter:<br></div>
+        <input type="text" id="input" autofocus>
+    </div>
+    
+    <p>This program generates random triplets while avoiding forbidden pairs.</p>
+
+    <script>
         function parseForbiddenPairs(input) {
             let forbiddenPairs = new Set();
             let pairs = input.split(",");
@@ -41,3 +90,6 @@
                 this.value = "";
             }
         });
+    </script>
+</body>
+</html>
