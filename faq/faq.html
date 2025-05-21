@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Preguntas Frecuentes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 40px;
+    }
+    .faq-container {
+      max-width: 700px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    .faq-item {
+      margin-bottom: 20px;
+    }
+    .faq-question {
+      font-weight: bold;
+      cursor: pointer;
+      background-color: #eee;
+      padding: 10px;
+      border-radius: 8px;
+    }
+    .faq-answer {
+      display: none;
+      padding: 10px;
+      margin-top: 5px;
+      background-color: #fafafa;
+      border-left: 4px solid #007bff;
+    }
+  </style>
+</head>
+<body>
+  <div class="faq-container">
+    <h2>Preguntas Frecuentes</h2>
+
+    <div class="faq-item">
+      <div class="faq-question">¿can you play chords?</div>
+      <div class="faq-answer">Yes you can play chords. You have to think on the notes as one arpeggio (is way easier than it looks once you finished the tutorial on this page)</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">¿can you improvise over chord progressions?</div>
+      <div class="faq-answer">Yes, you can improvise overchord progression</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">¿can you sing and apply music theory?</div>
+      <div class="faq-answer">Yes, but what you sing using music theory can sound bad, what you sing with no music theory always sounds good </div>
+    </div>
+  </div>
+
+  <script>
+    const questions = document.querySelectorAll('.faq-question');
+    questions.forEach(q => {
+      q.addEventListener('click', () => {
+        const answer = q.nextElementSibling;
+        answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+      });
+    });
+  </script>
+</body>
+</html>
