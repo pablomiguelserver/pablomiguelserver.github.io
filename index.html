@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beautiful Website</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">Play what you sing(read faq)</h1>
+    <video class="video-player" controls>
+      <source src="myVideo.MP4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <div class="buttons">
+      <button id="guitarBtn">Guitar</button>
+      <button id="pianoBtn">Piano</button>
+      <button id="bassBtn">Bass</button>
+    </div>
+  </div>
+
+
+    <script>
+        // Add event listeners to each button to navigate to specific endpoints
+        document.getElementById('guitarBtn').addEventListener('click', function() {
+            window.location.href = './guitar/guitar.html';  // Redirect to guitar page
+        });
+
+        document.getElementById('pianoBtn').addEventListener('click', function() {
+            window.location.href = './piano/piano.html';  // Redirect to piano page
+        });
+
+        document.getElementById('bassBtn').addEventListener('click', function() {
+            window.location.href = './bass/bass.html';  // Redirect to bass page
+        });
+    </script>
+</body>
+</html>
