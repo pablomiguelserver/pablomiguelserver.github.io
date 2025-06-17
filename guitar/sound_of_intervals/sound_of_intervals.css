@@ -1,0 +1,66 @@
+/* Fonts: Playfair Display & Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@700&display=swap');
+
+body {
+  margin: 0;
+  background: #f9f9f7;
+  font-family: 'Inter', sans-serif;
+  color: #1a1a1a;
+  line-height: 1.8;
+}
+
+.container {
+  max-width: 768px;
+  margin: 96px auto;
+  padding: 0 20px;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  line-height: 1.2;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+}
+
+.subtitle {
+  color: #6e6e6e;
+  font-size: 1.125rem;
+  margin-bottom: 2em;
+}
+
+.intro {
+  font-size: 1.125rem;
+  text-align: left;
+}
+
+.dropcap {
+  float: left;
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  line-height: 1;
+  padding-right: 8px;
+  color: #1a1a1a;
+}
+
+blockquote {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  margin: 2.5em 0;
+  text-align: center;
+  color: #333;
+}
+
+a {
+  display: block;
+  margin-top: 3em;
+  font-size: 1rem;
+  color: #3056d3;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+a:hover {
+  text-decoration: underline;
+}
