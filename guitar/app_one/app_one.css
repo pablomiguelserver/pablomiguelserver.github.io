@@ -1,0 +1,112 @@
+        .terminal {
+            width: 80%;
+            max-width: 600px;
+            height: 300px;
+            background: black;
+            color: white;
+            padding: 10px;
+            overflow-y: auto;
+            font-family: monospace;
+        }
+	/*terminal input*/
+        input {
+            width: 100%;
+            border: none;
+            background: black;
+            color: white;
+            font-family: monospace;
+            outline: none;
+        }
+/* Reset default margin and padding */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: block;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Centering the container horizontally */
+.container {
+    max-width: 800px;
+    padding: 40px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 40px auto; /* Center horizontally and add top spacing */
+}
+
+/* Styling for the main heading */
+h1 {
+    margin-bottom: 20px;
+    font-size: 2.5em;
+}
+
+/* Styling for subheadings */
+h2 {
+    margin-top: 30px;
+    font-size: 1.8em;
+}
+
+/* Paragraph styling */
+p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+/* Button link styling */
+a {
+    display: inline-block;
+    margin-top: 30px;
+    text-decoration: none;
+    color: white;
+    background-color: #333;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+a:hover {
+    background-color: #555;
+}
+
+/* Fade In Effect */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply animation */
+.container {
+    animation: fadeIn 1s ease-in;
+}
+
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+
+img {
+  width: 700px;
+  height: auto;
+}
+
