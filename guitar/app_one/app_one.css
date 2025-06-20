@@ -1,112 +1,121 @@
-        .terminal {
-            width: 80%;
-            max-width: 600px;
-            height: 300px;
-            background: black;
-            color: white;
-            padding: 10px;
-            overflow-y: auto;
-            font-family: monospace;
-        }
-	/*terminal input*/
-        input {
-            width: 100%;
-            border: none;
-            background: black;
-            color: white;
-            font-family: monospace;
-            outline: none;
-        }
-/* Reset default margin and padding */
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    display: block;
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@700&display=swap');
+
+body {
+  margin: 0;
+  background: #f9f9f7;
+  font-family: 'Inter', sans-serif;
+  color: #1a1a1a;
+  line-height: 1.8;
 }
 
-/* Centering the container horizontally */
 .container {
-    max-width: 800px;
-    padding: 40px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    margin: 40px auto; /* Center horizontally and add top spacing */
+  max-width: 800px;
+  margin: 80px auto;
+  padding: 0 24px;
 }
 
-/* Styling for the main heading */
 h1 {
-    margin-bottom: 20px;
-    font-size: 2.5em;
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  line-height: 1.2;
+  font-weight: 700;
+  margin-bottom: 0.5em;
 }
 
-/* Styling for subheadings */
 h2 {
-    margin-top: 30px;
-    font-size: 1.8em;
+  font-size: 1.75rem;
+  margin-top: 2em;
+  font-weight: 500;
 }
 
-/* Paragraph styling */
-p {
-    margin-bottom: 20px;
-    line-height: 1.8;
-    text-align: justify;
+.subtitle {
+  color: #6e6e6e;
+  font-size: 1.125rem;
+  margin-bottom: 2em;
 }
 
-/* Button link styling */
+.intro {
+  font-size: 1.125rem;
+}
+
+.dropcap {
+  float: left;
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  line-height: 1;
+  padding-right: 8px;
+  color: #1a1a1a;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-top: 2em;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2em;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+th, td {
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: 500;
+}
+
+/* ✅ Responsive images */
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.5em auto;
+}
+
 a {
-    display: inline-block;
-    margin-top: 30px;
-    text-decoration: none;
-    color: white;
-    background-color: #333;
-    padding: 12px 30px;
-    border-radius: 5px;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
+  display: inline-block;
+  margin-top: 2em;
+  font-size: 1rem;
+  color: #3056d3;
+  text-decoration: none;
+  transition: all 0.2s ease;
 }
 
 a:hover {
-    background-color: #555;
+  text-decoration: underline;
 }
 
-/* Fade In Effect */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.terminal-section {
+  margin-top: 3em;
 }
 
-/* Apply animation */
-.container {
-    animation: fadeIn 1s ease-in;
+.terminal {
+  width: 100%;
+  height: 300px;
+  background: #000;
+  color: #0f0;
+  padding: 12px;
+  overflow-y: auto;
+  font-family: monospace;
+  border-radius: 8px;
+  margin-top: 1em;
 }
 
-        table {
-            width: 50%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-
-img {
-  width: 700px;
-  height: auto;
+.terminal input {
+  width: 100%;
+  border: none;
+  background: #000;
+  color: #0f0;
+  font-family: monospace;
+  font-size: 1rem;
+  margin-top: 8px;
+  outline: none;
 }
-
