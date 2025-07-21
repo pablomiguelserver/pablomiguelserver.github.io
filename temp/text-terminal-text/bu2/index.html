@@ -2,24 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>🎵 Interval Dictation Terminal</title>
+  <title>Interval Dictation Terminal</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm/css/xterm.css" />
   <style>
     body {
-      background: #121212;
+      background: #f4f4f4;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
-      color: #ffffff;
     }
     #terminal-container {
       width: 500px;
       height: 250px;
-      border: 1px solid #444;
+      border: 1px solid #ccc;
       border-radius: 6px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.6);
     }
   </style>
 </head>
@@ -30,9 +28,9 @@
   <script>
     const term = new Terminal({
       theme: {
-        background: '#1e1e1e',
-        foreground: '#c5c8c6',
-        cursor: '#ffffff'
+        background: '#ffffff',
+        foreground: '#000000',
+        cursor: '#000000'
       }
     });
 
@@ -54,7 +52,7 @@
 
     function getIntervalUp(mylp, myrp, intervalMap, arr, delay, callback) {
       mylp = myrp;
-      if (mylp === 12) return callback(mylp, myrp);
+      if (mylp === 12) return callback(mylp, myrp); // do nothing
 
       let newrp;
       do {
@@ -99,7 +97,7 @@
         if (char === "\r") {
           const delay = parseInt(buffer);
           if (isNaN(delay)) {
-            term.writeln("\nenter a number.");
+            term.writeln("\nPlease enter a valid number.");
             askInput();
           } else {
             term.writeln("\nStarting...");

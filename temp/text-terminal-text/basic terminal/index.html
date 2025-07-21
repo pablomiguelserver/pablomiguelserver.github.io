@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Interval Dictation Web Terminal</title>
+  <style>
+    body { font-family: monospace; background: #111; color: #0f0; padding: 20px; }
+    #terminal { white-space: pre-line; }
+  </style>
+</head>
+<body>
+  <h2>🎵 Interval Dictation Terminal</h2>
+  <label>Seconds between dictations: <input type="number" id="intervalInput" value="2" min="1"></label>
+  <button onclick="startDictation()">Start</button>
+  <div id="terminal"></div>
+
+  <script>
+    const intervalMap = {
+      0.5: "minor second", 1.0: "major second", 1.5: "minor third", 2.0: "major third", 
+      2.5: "perfect fourth", 3.0: "tritone", 3.5: "perfect fifth", 4.0: "minor sixth",
+      4.5: "major sixth", 5.0: "minor seventh", 5.5: "major seventh", 6.0: "perfect octave"
+    };
+
+    const arr = [".", ".", "", ".", "", ".", "", ".", ".", "", ".", "", "."];
+    let lp = 2, rp = 2;
+
+    function speak(text) {
+      const msg = new SpeechSynthesisUtterance(text);
+      window.speechSynthesis.speak(msg);
+      logToTerminal(text);
+    }
+
+    function logToTerminal(text) {
+      const terminal = document.getElementById("terminal");
+      terminal.textContent += text + "\n";
+    }
+
+    function getIntervalUp(lp, rp) {
+      lp = rp;
+      if (lp === 12) return [lp, rp];
+      do {
+        rp = Math.floor(Math.random() * (13 - lp - 1)) + lp + 1;
+      } while (arr[rp] !== ".");
+      let steps = Math.abs((lp - rp) / 2);
+      let interval = intervalMap[steps] || "unknown interval";
+      speak("Ascending " + interval);
+      return [lp, rp];
+    }
+
+    function getIntervalDown(lp, rp) {
+      if (rp === 0) return [lp, rp];
+      lp = rp;
+      do {
+        rp = Math.floor(Math.random() * rp);
+      } while (arr[rp] !== ".");
+      let steps = Math.abs((lp - rp) / 2);
+      let interval = intervalMap[steps] || "unknown interval";
+      speak("Descending " + interval);
+      return [lp, rp];
+    }
+
+    function startDictation() {
+      let delay = parseInt(document.getElementById("intervalInput").value) * 1000;
+      let current = [lp, rp];
+      speak("Starting interval dictation...");
+      setInterval(() => {
+        if (Math.random() < 0.5) {
+          current = getIntervalUp(current[0], current[1]);
+        } else {
+          current = getIntervalDown(current[0], current[1]);
+        }
+      }, delay);
+    }
+  </script>
+</body>
+</html>

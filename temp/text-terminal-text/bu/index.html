@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Small Light Terminal</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm/css/xterm.css" />
+  <style>
+    body {
+      background: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #terminal-container {
+      width: 500px;
+      height: 200px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .xterm {
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div id="terminal-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/xterm/lib/xterm.min.js"></script>
+  <script>
+    const term = new Terminal({
+      theme: {
+        background: '#ffffff',
+        foreground: '#000000',
+        cursor: '#000000',
+      },
+    });
+
+    term.open(document.getElementById('terminal-container'));
+    term.writeln("Welcome to the small light terminal!");
+    term.prompt = () => {
+      term.write('\r\n$ ');
+    };
+    term.prompt();
+  </script>
+</body>
+</html>

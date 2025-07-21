@@ -65,7 +65,6 @@
       const interval = intervalMap[steps] || "";
 
       const text = `Ascending ${interval}`;
-      term.writeln(text);
       speak(text);
 
       setTimeout(() => callback(mylp, newrp), delay * 1000);
@@ -85,7 +84,6 @@
       const interval = intervalMap[steps] || "";
 
       const text = `Descending ${interval}`;
-      term.writeln(text);
       speak(text);
 
       setTimeout(() => callback(mylp, newrp), delay * 1000);
@@ -122,7 +120,7 @@
       const steps = Math.abs((lp - rp) / 2);
       const interval = intervalMap[steps] || "";
       const text = `Ascending ${interval}`;
-      term.writeln(text);
+      
       speak(text);
 
       setTimeout(() => runLoop(lp, rp, delay), delay * 1000);

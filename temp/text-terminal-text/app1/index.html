@@ -1,95 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Triplets Terminal</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .terminal {
-            width: 80%;
-            max-width: 600px;
-            height: 300px;
-            background: black;
-            color: white;
-            padding: 10px;
-            overflow-y: auto;
-            font-family: monospace;
-        }
-        input {
-            width: 100%;
-            border: none;
-            background: black;
-            color: white;
-            font-family: monospace;
-            outline: none;
-        }
+  <meta charset="UTF-8" />
+  <title>Interval Dictation Terminal</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm/css/xterm.css" />
+<style>
+  body {
+    margin: 0;
+    height: 200vh;
+    background-color: #fff; /* white background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #terminal-container {
+    width: 800px; /* wider */
+    height: 10px; /* slightly shorter */
+    background-color: #000; /* black terminal */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  }
+</style>
 
-
-    </style>
 </head>
 <body>
-    <p>Enter forbidden pairs (e.g., "1 2, 3 4") and press Enter to generate valid triplets.</p>
-    
-    <div class="terminal" id="terminal">
-        <div id="output">Enter forbidden pairs and press Enter:<br></div>
-        <input type="text" id="input" autofocus>
-    </div>
-    
-    <p>This program generates random triplets while avoiding forbidden pairs.</p>
+  <div id="terminal-container"></div>
 
-    <script>
-        function parseForbiddenPairs(input) {
-            let forbiddenPairs = new Set();
-            let pairs = input.split(",");
-            pairs.forEach(pair => {
-                let nums = pair.trim().split(" ");
-                if (nums.length === 2) {
-                    forbiddenPairs.add(`${nums[0]} ${nums[1]}`);
-                    forbiddenPairs.add(`${nums[1]} ${nums[0]}`); // Ensure reverse pairs are also forbidden
-                }
-            });
-            return forbiddenPairs;
+  <script src="https://cdn.jsdelivr.net/npm/xterm/lib/xterm.js"></script>
+  <script>
+    const term = new Terminal({
+      cursorBlink: true,
+      theme: { background: '#000000', foreground: '#ffffff' }
+    });
+    term.open(document.getElementById('terminal-container'));
+
+    function speak(text) {
+      const msg = new SpeechSynthesisUtterance(text);
+      msg.lang = 'en-US';
+      speechSynthesis.speak(msg);
+    }
+
+    function getIntervalUp(lp, rp, intervalMap, arr, delay, callback) {
+      lp = rp;
+      if (lp === 12) return callback(lp, rp);
+
+      let newRp;
+      do {
+        newRp = Math.floor(Math.random() * (12 - lp)) + lp + 1;
+      } while (arr[newRp] !== ".");
+
+      const steps = Math.abs((lp - newRp) / 2);
+      const interval = intervalMap[steps] || "";
+      term.writeln(`Ascending ${interval}`);
+      speak(`Ascending ${interval}`);
+
+      setTimeout(() => callback(lp, newRp), delay * 1000);
+    }
+
+    function getIntervalDown(lp, rp, intervalMap, arr, delay, callback) {
+      if (rp === 0) return callback(lp, rp);
+      lp = rp;
+
+      let newRp;
+      do {
+        newRp = Math.floor(Math.random() * rp);
+      } while (arr[newRp] !== ".");
+
+      const steps = Math.abs((lp - newRp) / 2);
+      const interval = intervalMap[steps] || "";
+      term.writeln(`Descending ${interval}`);
+      speak(`Descending ${interval}`);
+
+      setTimeout(() => callback(lp, newRp), delay * 1000);
+    }
+
+    function runApp(secondsBetween) {
+      const arr = [".", ".", "", ".", "", ".", "", ".", ".", "", ".", "", "."];
+      const intervalMap = {
+        0.5: "minor second", 1.0: "major second", 1.5: "minor third", 2.0: "major third",
+        2.5: "perfect fourth", 3.0: "tritone", 3.5: "perfect fifth", 4.0: "minor sixth",
+        4.5: "major sixth", 5.0: "minor seventh", 5.5: "major seventh", 6.0: "perfect octave"
+      };
+
+      let lp = 2, rp = 2;
+      do {
+        lp = Math.floor(Math.random() * 11);
+        rp = Math.floor(Math.random() * (12 - lp)) + lp + 1;
+      } while (!(arr[lp] === "." && arr[rp] === "."));
+
+      const steps = Math.abs((lp - rp) / 2);
+      const interval = intervalMap[steps] || "";
+      term.writeln(`Ascending ${interval}`);
+      speak(`Ascending ${interval}`);
+
+      let current = [lp, rp];
+
+      function loop() {
+        if (Math.random() < 0.5) {
+          getIntervalUp(current[0], current[1], intervalMap, arr, secondsBetween, (newLp, newRp) => {
+            current = [newLp, newRp];
+            loop();
+          });
+        } else {
+          getIntervalDown(current[0], current[1], intervalMap, arr, secondsBetween, (newLp, newRp) => {
+            current = [newLp, newRp];
+            loop();
+          });
         }
+      }
 
-        function generateUniqueTriplet() {
-            let uniqueNumbers = new Set();
-            while (uniqueNumbers.size < 3) {
-                uniqueNumbers.add(Math.floor(Math.random() * 8) + 1);
-            }
-            return Array.from(uniqueNumbers);
+      setTimeout(loop, secondsBetween * 1000);
+    }
+
+    // Ask user input (fake prompt using xterm)
+    term.writeln("Enter delay in seconds between dictations:");
+    let inputBuffer = "";
+
+    term.onKey(e => {
+      const char = e.key;
+      if (char === '\r') {
+        const delay = parseFloat(inputBuffer);
+        if (!isNaN(delay) && delay > 0) {
+          term.writeln("\nRunning app...");
+          runApp(delay);
+        } else {
+          term.writeln("\nInvalid input. Enter a number:");
         }
-
-        function containsForbiddenPair(triplet, forbiddenPairs) {
-            return forbiddenPairs.has(`${triplet[0]} ${triplet[1]}`) ||
-                   forbiddenPairs.has(`${triplet[0]} ${triplet[2]}`) ||
-                   forbiddenPairs.has(`${triplet[1]} ${triplet[2]}`);
+        inputBuffer = "";
+      } else if (char === '\u007F') { // Backspace
+        if (inputBuffer.length > 0) {
+          inputBuffer = inputBuffer.slice(0, -1);
+          term.write('\b \b');
         }
-
-        document.getElementById("input").addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-                let forbiddenPairs = parseForbiddenPairs(this.value);
-                let outputDiv = document.getElementById("output");
-                outputDiv.innerHTML += `<br>> Generating triplets...<br>`;
-                
-                for (let i = 0; i < 8; i++) {
-                    let triplet;
-                    do {
-                        triplet = generateUniqueTriplet();
-                    } while (containsForbiddenPair(triplet, forbiddenPairs));
-                    outputDiv.innerHTML += `${triplet.join(" ")}<br>`;
-                }
-                this.value = "";
-            }
-        });
-    </script>
+      } else {
+        inputBuffer += char;
+        term.write(char);
+      }
+    });
+  </script>
 </body>
 </html>
