@@ -3,76 +3,104 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Elegance in Typography</title>
+  <title>Sound of Intervals</title>
   <link rel="stylesheet" href="sound_of_intervals.css" />
+
 </head>
 <body>
   <main class="container">
-    <h1>Elegance in Typography</h1>
-    <p class="subtitle">The art of beautiful text presentation</p>
+    <h1>Sound of Intervals</h1>
 
+    <p>This are samples of the <strong>ascending intervals</strong>.</p>
+    <div id="asc-buttons"></div>
 
+    <p>This are samples of the <strong>descending intervals</strong>.</p>
+    <div id="desc-buttons"></div>
 
-    <p>
-      Good typography is a perfect provider of an enjoyable reading experience. In contrast, such as choice of typeface, text size, line spacing, and margin width, and a good link.
-    </p>
+    <script>
+      const intervals = [
+        { name: "unison", ratio: 1 },
+        { name: "minor second", ratio: 16 / 15 },
+        { name: "major second", ratio: 9 / 8 },
+        { name: "minor third", ratio: 6 / 5 },
+        { name: "major third", ratio: 5 / 4 },
+        { name: "perfect fourth", ratio: 4 / 3 },
+        { name: "tritone", ratio: Math.sqrt(2) },
+        { name: "perfect fifth", ratio: 3 / 2 },
+        { name: "minor sixth", ratio: 8 / 5 },
+        { name: "major sixth", ratio: 5 / 3 },
+        { name: "minor seventh", ratio: 9 / 5 },
+        { name: "major seventh", ratio: 15 / 8 },
+        { name: "octave", ratio: 2 }
+      ];
 
-  <div id="buttons"></div>
+      const baseFrequency = 220; // A3
 
-  <script>
-    const intervals = [
-      { name: "unison", ratio: 1 },
-      { name: "minor second", ratio: 16 / 15 },
-      { name: "major second", ratio: 9 / 8 },
-      { name: "minor third", ratio: 6 / 5 },
-      { name: "major third", ratio: 5 / 4 },
-      { name: "perfect fourth", ratio: 4 / 3 },
-      { name: "Tritone", ratio: Math.sqrt(2) },
-      { name: "perfect fifth", ratio: 3 / 2 },
-      { name: "minor sixth", ratio: 8 / 5 },
-      { name: "major sixth", ratio: 5 / 3 },
-      { name: "minor seventh", ratio: 9 / 5 },
-      { name: "major seventh", ratio: 15 / 8 },
-      { name: "Octave", ratio: 2 }
-    ];
+      const ascContainer = document.getElementById("asc-buttons");
+      const descContainer = document.getElementById("desc-buttons");
 
-    const baseFrequency = 220; // A3
+      intervals.forEach(interval => {
+        // Ascending button
+        const ascBtn = document.createElement("button");
+        ascBtn.textContent = interval.name;
+        ascBtn.onclick = () => playAscending(baseFrequency, interval.ratio);
+        ascContainer.appendChild(ascBtn);
 
-    const buttonsContainer = document.getElementById("buttons");
+        // Descending button
+        const descBtn = document.createElement("button");
+        descBtn.textContent = interval.name;
+        descBtn.onclick = () => playDescending(baseFrequency, interval.ratio);
+        descContainer.appendChild(descBtn);
+      });
 
-    intervals.forEach(interval => {
-      const btn = document.createElement("button");
-      btn.textContent = interval.name;
-      btn.onclick = () => playInterval(baseFrequency, interval.ratio);
-      buttonsContainer.appendChild(btn);
-    });
+      function playAscending(rootFreq, ratio) {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const duration = 1;
 
-    function playInterval(rootFreq, ratio) {
-      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      const duration = 1;
+        const gainNode = audioCtx.createGain();
+        gainNode.gain.value = 0.2;
 
-      const gainNode = audioCtx.createGain();
-      gainNode.gain.value = 0.2; // volumen bajo 
+        const osc1 = audioCtx.createOscillator();
+        osc1.type = "sine";
+        osc1.frequency.value = rootFreq;
+        osc1.connect(gainNode);
+        osc1.start();
+        osc1.stop(audioCtx.currentTime + duration);
 
-      const osc1 = audioCtx.createOscillator();
-      osc1.type = "sine";
-      osc1.frequency.value = rootFreq;
-      osc1.connect(gainNode);
-      osc1.start();
-      osc1.stop(audioCtx.currentTime + duration);
+        const osc2 = audioCtx.createOscillator();
+        osc2.type = "sine";
+        osc2.frequency.value = rootFreq * ratio;
+        osc2.connect(gainNode);
+        osc2.start(audioCtx.currentTime + duration);
+        osc2.stop(audioCtx.currentTime + duration * 2);
 
-      const osc2 = audioCtx.createOscillator();
-      osc2.type = "sine";
-      osc2.frequency.value = rootFreq * ratio;
-      osc2.connect(gainNode);
-      osc2.start(audioCtx.currentTime + duration);
-      osc2.stop(audioCtx.currentTime + duration * 2);
+        gainNode.connect(audioCtx.destination);
+      }
 
-      gainNode.connect(audioCtx.destination);
-    }
-  </script>
+      function playDescending(rootFreq, ratio) {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const duration = 1;
 
-    <a href="https://typography.com" target="_blank">Typography.com</a>
+        const gainNode = audioCtx.createGain();
+        gainNode.gain.value = 0.2;
+
+        const osc1 = audioCtx.createOscillator();
+        osc1.type = "sine";
+        osc1.frequency.value = rootFreq * ratio; // start higher
+        osc1.connect(gainNode);
+        osc1.start();
+        osc1.stop(audioCtx.currentTime + duration);
+
+        const osc2 = audioCtx.createOscillator();
+        osc2.type = "sine";
+        osc2.frequency.value = rootFreq; // then go back to root
+        osc2.connect(gainNode);
+        osc2.start(audioCtx.currentTime + duration);
+        osc2.stop(audioCtx.currentTime + duration * 2);
+
+        gainNode.connect(audioCtx.destination);
+      }
+    </script>
   </main>
 </body>
 </html>
