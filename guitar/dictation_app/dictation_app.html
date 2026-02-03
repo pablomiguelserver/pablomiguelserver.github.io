@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🎧 Melodic Dictation Terminal</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm/css/xterm.css" />
+
+  <style>
+    body {
+      background: #121212;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #terminal-container {
+      width: 650px;
+      height: 350px;
+      border: 1px solid #444;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="terminal-container"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/xterm/lib/xterm.min.js"></script>
+
+<script>
+/* =====================
+   TERMINAL SETUP
+===================== */
+const term = new Terminal({
+  theme: {
+    background: '#1e1e1e',
+    foreground: '#c5c8c6',
+    cursor: '#ffffff'
+  }
+});
+term.open(document.getElementById('terminal-container'));
+
+function println(text = "") {
+  term.writeln(text);
+}
+
+/* =====================
+   AUDIO SETUP
+===================== */
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+function playTone(freq, duration = 0.7) {
+  return new Promise(resolve => {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+
+    osc.type = "sine";
+    osc.frequency.value = freq;
+
+    gain.gain.value = 0.15; // volumen suave
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    osc.start();
+    setTimeout(() => {
+      osc.stop();
+      resolve();
+    }, duration * 1000);
+  });
+}
+
+async function playSequence(freqs, pauseSeconds) {
+  for (const f of freqs) {
+    await playTone(f);
+    await new Promise(r => setTimeout(r, pauseSeconds * 1000));
+  }
+}
+
+/* =====================
+   DATA
+===================== */
+const INTERVALS = {
+  m2: 1,
+  M2: 2,
+  m3: 3,
+  M3: 4,
+  P4: 5,
+  TT: 6,
+  P5: 7,
+  m6: 8,
+  M6: 9,
+  m7: 10,
+  M7: 11,
+  Octave: 12
+};
+
+const BASE_NOTES = {
+  220: ["A", "La"],
+  247: ["B", "Si"],
+  261: ["C", "Do"],
+  293: ["D", "Re"],
+  329: ["E", "Mi"],
+  349: ["F", "Fa"],
+  392: ["G", "Sol"]
+};
+
+/* =====================
+   INPUT HANDLING
+===================== */
+let buffer = "";
+term.onData(e => {
+  if (e === "\r") {
+    handleInput(buffer.trim());
+    buffer = "";
+    term.write("\r\n");
+  } else if (e === "\u007F") {
+    buffer = buffer.slice(0, -1);
+    term.write("\b \b");
+  } else {
+    buffer += e;
+    term.write(e);
+  }
+});
+
+/* =====================
+   APP STATE
+===================== */
+let step = "mode";
+let notesCount = 2;
+let pauseSeconds = 1;
+let freqs = [];
+let correctIntervals = [];
+
+/* =====================
+   INITIAL UI
+===================== */
+println("🎧 Melodic Dictation App");
+println("");
+println("🎛️ Elige modo de dictado:");
+println("1️⃣  2 notas");
+println("2️⃣  3 notas");
+println("3️⃣  4 notas");
+println("");
+
+/* =====================
+   INPUT LOGIC
+===================== */
+function handleInput(input) {
+
+  /* MODE SELECTION */
+  if (step === "mode") {
+    if (input === "1") notesCount = 2;
+    else if (input === "2") notesCount = 3;
+    else if (input === "3") notesCount = 4;
+    else {
+      println("❌ Opción inválida");
+      return;
+    }
+
+    step = "pause";
+    println("⏱️ Tiempo entre notas (segundos):");
+    return;
+  }
+
+  /* PAUSE TIME */
+  if (step === "pause") {
+    const val = parseFloat(input);
+    if (isNaN(val) || val <= 0) {
+      println("❌ Ingresa un número válido");
+      return;
+    }
+
+    pauseSeconds = val;
+
+    println("");
+    println("Escribe intervalos separados por espacios");
+    println("Ej: M2 m3 P5");
+    println("Comandos: r = replay | q = salir");
+    println("");
+
+    startDictation();
+    step = "answer";
+    return;
+  }
+
+  /* ANSWER */
+  if (step === "answer") {
+
+    if (input === "q") {
+      println("👋 Hasta luego, músico");
+      return;
+    }
+
+    if (input === "r") {
+      println("🔁 Reproduciendo...");
+      playSequence(freqs, pauseSeconds);
+      return;
+    }
+
+    const user = input.split(" ");
+
+    if (JSON.stringify(user) === JSON.stringify(correctIntervals)) {
+      println("✅ Correcto 🔥");
+    } else {
+      println("❌ Incorrecto");
+      println("🎯 Correcto era: " + correctIntervals.join(" "));
+    }
+
+    startDictation();
+  }
+}
+
+/* =====================
+   DICTATION LOGIC
+===================== */
+function startDictation() {
+  const baseFreq = Object.keys(BASE_NOTES)[
+    Math.floor(Math.random() * Object.keys(BASE_NOTES).length)
+  ];
+
+  const [eng, esp] = BASE_NOTES[baseFreq];
+
+  // ⬇️ UNA OCTAVA MÁS GRAVE
+  freqs = [Number(baseFreq) / 2];
+  correctIntervals = [];
+
+  for (let i = 0; i < notesCount - 1; i++) {
+    const entries = Object.entries(INTERVALS);
+    const [name, semitones] = entries[Math.floor(Math.random() * entries.length)];
+
+    let nextFreq = freqs[freqs.length - 1] * Math.pow(2, semitones / 12);
+
+    // límite para que no se vaya muy agudo
+    if (nextFreq > 600) nextFreq /= 2;
+
+    freqs.push(nextFreq);
+    correctIntervals.push(name);
+  }
+
+  println("");
+  println(`🎼 Nota inicial: ${eng} (${esp})`);
+  playSequence(freqs, pauseSeconds);
+}
+</script>
+
+</body>
+</html>
